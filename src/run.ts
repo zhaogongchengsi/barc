@@ -1,8 +1,9 @@
-import { resolveConfig } from "./config"
+import { resolveConfig, resolveProgram } from "./config"
 import { isAbsolute, resolve } from 'path'
 import { consola } from "consola";
+import { isObject } from "./utils";
 
-export async function run(argv: string[], configPath: string, isOrder: boolean = false) {
+export async function run(argv: string[], configPath: string, isOrder: boolean = false, log: boolean = false) {
 	const root = process.cwd()
 	const config = await resolveConfig(isAbsolute(configPath) ? configPath : resolve(root, configPath))
 
@@ -11,7 +12,19 @@ export async function run(argv: string[], configPath: string, isOrder: boolean =
 		return
 	}
 
+	if (!isObject(config)) {
+		consola.warn('Invalid configuration file')
+		return
+	}
 
-	console.log(argv, config, isOrder)
+	const program = resolveProgram(config)
+
+	if (argv.length === 0) {
+		argv = [program[0].exec]
+	}
+
+	const tasks = program.filter(({ exec }) => argv.includes(exec))
+
+	console.log(argv, program)
 }
 

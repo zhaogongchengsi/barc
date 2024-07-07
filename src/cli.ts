@@ -22,10 +22,16 @@ const main = defineCommand({
 			alias: 'c',
 			valueHint: "path",
 			default: CONFIG_NAME
+		},
+		log: {
+			type: "boolean",
+			description: "Output log information",
+			alias: 'l',
+			default: false
 		}
 	},
-	run(ctx) {
-		run(ctx.args._, ctx.args.config, ctx.args.order)
+	run({args}) {
+		run(args._, args.config, args.order, args.log)
 	},
 });
 

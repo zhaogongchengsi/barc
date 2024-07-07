@@ -1,5 +1,9 @@
 {
 	"esbuild": {
+		"env": {
+			"NODE_ENV": "development"
+		},
+		"prefix": "--",
 		"bundle": true,
 		"minify": true,
 		"target": "es2015",

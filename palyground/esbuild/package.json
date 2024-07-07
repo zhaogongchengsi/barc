@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "barc"
+    "dev": "barc esbuild --log"
   },
   "keywords": [],
   "author": "",
