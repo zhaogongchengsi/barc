@@ -6,8 +6,6 @@ Is it necessary to execute in an orderly manner?
 [![bundle][bundle-src]][bundle-href]
 [![JSDocs][jsdocs-src]][jsdocs-href]
 
-> A simple middleware barc model.
-
 ## Usage
 
 ```bash
