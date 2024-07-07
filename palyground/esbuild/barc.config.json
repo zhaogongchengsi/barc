@@ -1,0 +1,12 @@
+{
+	"esbuild": {
+		"bundle": true,
+		"minify": true,
+		"target": "es2015",
+		"platform": "node",
+		"external": ["fs", "path"],
+		"outdir": "dist",
+		"entryPoints": ["src/index.ts"],
+		"tsconfig": "tsconfig.json"
+	}
+}
