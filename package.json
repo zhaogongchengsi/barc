@@ -50,7 +50,6 @@
   "license": "MIT",
   "keywords": [],
   "devDependencies": {
-    "@types/node": "^20.14.10",
     "bumpp": "^9.4.1",
     "esno": "^4.7.0",
     "unbuild": "^2.0.0",

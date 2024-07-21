@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "barc esbuild --log"
+    "dev": "barc esbuild --log",
+    "build": "esbuild ./index.ts --bundle --outdir=dist"
   },
   "keywords": [],
   "author": "",
