@@ -41,10 +41,6 @@ export async function executeCommand(program: Program, cwd: string): Promise<voi
 			return;
 		}
 
-		console.log('args:', args)
-		console.log('cwd:', cwd)
-		console.log('exec:', exec)
-
 		const childProcess = spawn(
 			exec,
 			args,
