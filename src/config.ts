@@ -9,7 +9,6 @@ export const CONFIG_NAME = 'barc.config.json'
 export interface Program {
 	exec: string,
 	argv: string[],
-	prefix?: string,
 	env?: {
 		[key: string]: string
 	},
@@ -21,7 +20,6 @@ export interface Program {
 export interface Config {
 	[key: string]: {
 		argv?: string[],
-		prefix?: string,
 		env?: {
 			[key: string]: string
 		},
@@ -53,19 +51,15 @@ export function resolveProgram(config?: Config): Program[] {
 	return Object.entries(config)
 		.map(([exec, value]) => {
 			if (!isObject(value)) return undefined
-
-			const prefix = value.prefix || '--'
 			const argv = value.argv || []
 			const env = value.env || {}
 
-			delete value.prefix
 			delete value.argv
 			delete value.env
 
 			return {
 				exec,
 				argv,
-				prefix,
 				env,
 				config: value
 			}

@@ -4,12 +4,16 @@
 			"NODE_ENV": "development"
 		},
 		"argv": ["./index.ts"],
-		"prefix": "--",
 		"bundle": true,
 		"minify": true,
 		"target": "es2015",
 		"platform": "node",
 		"external": ["fs", "path"],
-		"outdir": "dist"
+		"outdir": "dist",
+		"define": {
+			"__DEV__": "true",
+			"__PROD__": "false",
+			"__TEST__": "false"
+		}
 	}
 }
