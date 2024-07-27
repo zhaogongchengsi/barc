@@ -14,11 +14,9 @@ pnpm install @zunh/barc
 yarn add @zunh/barc
 ```
 
-#### Example
+## Example
 
 [esbuild](./palyground/esbuild/package.json)
-
-```js
 
 ## License
 
