@@ -7,6 +7,7 @@ import { isEmptyObject, isObject } from "./utils"
 export const CONFIG_NAME = 'barc.config.json'
 
 export interface Program {
+	key: string,
 	exec: string,
 	argv: string[],
 	env?: {
@@ -19,6 +20,7 @@ export interface Program {
 
 export interface Config {
 	[key: string]: {
+		name?: string,
 		argv?: string[],
 		env?: {
 			[key: string]: string
@@ -53,12 +55,15 @@ export function resolveProgram(config?: Config): Program[] {
 			if (!isObject(value)) return undefined
 			const argv = value.argv || []
 			const env = value.env || {}
+			const name = value.name || exec
 
 			delete value.argv
 			delete value.env
+			delete value.name
 
 			return {
-				exec,
+				key: exec,
+				exec: name,
 				argv,
 				env,
 				config: value

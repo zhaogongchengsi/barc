@@ -7,7 +7,10 @@ import { isObject } from './utils';
 export async function executeCommand(program: Program, cwd: string): Promise<void> {
 	const args = transformParameter(program)
 
+	// console.log('Executing command:', program.exec, args)
+
 	return new Promise((resolve, reject) => {
+
 		const exec = findCommandInNodeModules(program.exec, cwd)
 
 		if (exec === null) {
@@ -95,6 +98,19 @@ function transformParameter(program: Program): string[] {
 			const commonKey = `${_key}${parseSuffix(key, ':')}`
 			return Object.entries(value)
 				.map(([k, v]) => {
+
+					if (typeof v === 'boolean') {
+						return `${commonKey}${k}`
+					}
+
+					if (typeof v === 'number') {
+						return `${commonKey}${k}${parseSuffix(k, '=')}${v}`
+					}
+
+					if (Array.isArray(v)) {
+						return `${commonKey}${k}${parseSuffix(k, ':')}${v.join(', ')}`
+					}
+
 					return `${commonKey}${k}${parseSuffix(k, '=')}${v}`
 				})
 		}

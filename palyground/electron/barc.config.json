@@ -1,0 +1,33 @@
+{
+	"build:dev": {
+		"name": "esbuild",
+		"env": {
+			"NODE_ENV": "development"
+		},
+		"argv": [
+			"./app.ts",
+			"./src/index.ts"
+		],
+		"bundle": true,
+		"minify": true,
+		"target": "es2015",
+		"platform": "node",
+		"external": {
+			"electron": true,
+			"electron-reload": true
+		},
+		"outdir": "dist",
+		"define": {
+			"__DEV__": "true",
+			"__PROD__": "false",
+			"__TEST__": "false"
+		},
+		"watch": true
+	},
+	"electron:run": {
+		"name": "electron",
+		"args": [
+			"dist/app.js"
+		]
+	}
+}

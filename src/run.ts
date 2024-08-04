@@ -18,20 +18,14 @@ export async function run(argv: string[], configPath: string, isOrder: boolean =
 		return
 	}
 
-
 	const program = resolveProgram(config)
 
-	if (argv.length > 0) {
-		argv = program.map(({ exec }) => exec)
-	}
-
-	const commands  = program.filter(({ exec }) => argv.includes(exec))
+	const commands  = program.filter(({ key }) => argv.includes(key))
 
 	if (commands.length === 0) {
 		consola.warn('No command to run')
 		return
 	}
-
 
 	if (isOrder) {
 		for (const command of commands) {
